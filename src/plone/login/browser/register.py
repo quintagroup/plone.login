@@ -2,6 +2,7 @@
 from AccessControl import Unauthorized
 from DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 from plone.login import MessageFactory as _
 from plone.login.browser.login_help import append_klasses
@@ -31,6 +32,11 @@ class RegisterForm(form.EditForm):
     ignoreContext = True
 
     prefix = ''
+
+    index = ViewPageTemplateFile('templates/register.pt')
+    @property
+    def template(self):
+        return self.index
 
     def updateWidgets(self):
         super(RegisterForm, self).updateWidgets(prefix='')
@@ -132,14 +138,3 @@ class RegisterForm(form.EditForm):
 
         # TODO: Add way to configure the redirect
         self.request.response.redirect(self.context.absolute_url())
-
-
-class RegisterFormView(layout.FormWrapper):
-    form = RegisterForm
-
-
-wrapped_register_template = FormTemplateFactory(
-    template_path('register.pt'),
-    form=IRegisterForm,
-    request=IPloneLoginLayer
-)
