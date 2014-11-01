@@ -1,5 +1,23 @@
 <?xml version="1.0"?>
 <registry>
+
   <records interface="plone.login.interfaces.ILoginSettings"
            prefix="plone" />
+
+  <records prefix="plone.resources/plone.login"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="css">
+        <element>++resource++plone.login/plone-login.css</element>
+      </value>
+  </records>
+
+  <records prefix="plone.bundles/plone.login"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>plone.login</element>
+    </value>
+    <value key="enabled">True</value>
+    <value key="depends">plone</value>
+  </records>
+
 </registry>

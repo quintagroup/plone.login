@@ -4,6 +4,7 @@ from DateTime import DateTime
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 from email import message_from_string
 from plone.login import MessageFactory as _
@@ -39,6 +40,11 @@ class LoginForm(form.EditForm):
 
     ignoreContext = True
     prefix = ''
+
+    index = ViewPageTemplateFile('templates/login.pt')
+    @property
+    def template(self):
+        return self.index
 
     def _get_auth(self):
         try:
@@ -125,17 +131,6 @@ class LoginForm(form.EditForm):
                 came_from = self.context.portal_url()
 
         self.request.response.redirect(came_from)
-
-
-class LoginFormView(layout.FormWrapper):
-    form = LoginForm
-
-
-wrapped_login_template = FormTemplateFactory(
-    template_path('login.pt'),
-    form=ILoginForm,
-    request=IPloneLoginLayer
-)
 
 
 class RequireLoginView(BrowserView):
