@@ -45,9 +45,9 @@ class TestRegisterForm(unittest.TestCase):
         self.request['password'] = u'12345'
         self.request['password_confirm'] = u'12345'
         form = self.portal.restrictedTraverse(FORM_ID)
-        form.form_instance.update()
+        form.update()
 
-        data, errors = form.form_instance.extractData()
+        data, errors = form.extractData()
         self.assertEqual(len(errors), 0)
 
     def test_user_registered(self):
@@ -58,7 +58,7 @@ class TestRegisterForm(unittest.TestCase):
         self.request['password'] = u'12345'
         self.request['password_confirm'] = u'12345'
         form = self.portal.restrictedTraverse(FORM_ID)
-        form.form_instance.update()
-        form.form_instance.handleRegister(form.form_instance, 'http://nohost')
+        form.update()
+        form.handleRegister(form, 'http://nohost')
 
         self.assertIn(username, self.mt.listMemberIds())

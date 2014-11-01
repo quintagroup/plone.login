@@ -46,5 +46,5 @@ class TestLoginForm(unittest.TestCase):
         form = self.portal.restrictedTraverse(FORM_ID)
         form.update()
 
-        data, errors = form.form_instance.extractData()
+        data, errors = form.extractData()
         self.assertEqual(len(errors), 0)
