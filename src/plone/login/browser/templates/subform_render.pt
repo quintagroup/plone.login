@@ -2,11 +2,13 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
       lang="en"
       i18n:domain="plone"
       tal:omit-tag="">
 <body tal:omit-tag="">
 
+<metal:main fill-slot="main">
     <h1 tal:condition="view/label | nothing">
         <span tal:replace="view/label">Form title</span>
     </h1>
@@ -59,6 +61,7 @@
     <div class="action" tal:repeat="action view/actions/values|nothing">
         <input type="submit" tal:replace="structure action/render" />
     </div>
+</metal:main>
 
 </body>
 </html>

@@ -106,12 +106,10 @@
         name="login-help"
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
         permission="zope.Public"
-        class=".login_help.LoginHelpFormView"
-        template="templates/form_wrapper.pt"
+        class=".login_help.LoginHelpForm"
+        template="templates/login_help.pt"
         layer="plone.login.interfaces.IPloneLoginLayer"
         />
-
-    <adapter factory=".login_help.wrapped_loginhelp_template" />
 
     <browser:page
         name="require_login"

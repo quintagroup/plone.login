@@ -102,7 +102,8 @@
       <div class="footer">
         <p class="trouble"
            i18n:translate="footer_login_trouble">Trouble logging in? <tal:link
-           i18n:name="link_login_help"><a href="@@login-help" i18n:translate="footer_login_link_get_help">Get help</a></tal:link>.</p>
+           i18n:name="link_login_help"
+           tal:define="portal_url context/portal_url"><a href="@@login-help" i18n:translate="footer_login_link_get_help">Get help</a></tal:link>.</p>
         <p i18n:translate="footer_login_signup" class="signup right">Need an account? <tal:link
            i18n:name="link_login_signup"><a href="@@register" class="emph" i18n:translate="footer_login_link_signup">Sign up here &raquo;</a>.</tal:link></p>
       </div>

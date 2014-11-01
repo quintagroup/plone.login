@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from AccessControl import getSecurityManager
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 from plone.login import MessageFactory as _
@@ -80,8 +82,9 @@ class LoginHelpForm(form.EditForm):
     ignoreContext = True
 
     def can_reset_password(self):
-        # TODO: Actually check that the site allows reseting password
-        return True
+        has_permission = getSecurityManager().checkPermission(
+           'Main forgotten password', self.context)
+        return has_permission
 
     def can_retrieve_username(self):
         # TODO: Actually check that the site allows retrieving the username
@@ -101,14 +104,3 @@ class LoginHelpForm(form.EditForm):
 
         self.subforms = subforms
         super(LoginHelpForm, self).update()
-
-
-class LoginHelpFormView(layout.FormWrapper):
-    form = LoginHelpForm
-
-
-wrapped_loginhelp_template = FormTemplateFactory(
-    template_path('login_help.pt'),
-    form=ILoginHelpForm,
-    request=IPloneLoginLayer
-)
