@@ -23,7 +23,7 @@
 
       <!-- to switch to non-federated, remove the federated class below, and the .half class below that -->
       <div class="meat federated">
-        <div class="native half">
+        <div class="native">
 
           <form method="post"
             tal:attributes="action view/action; enctype view/enctype">
@@ -70,17 +70,12 @@
                 </div>
               </div>
             </tal:widgets>
-            <img src="++resource++plone.login/img/pwd-strength.png" class="pwd-strength" alt="Password strength placeholder — someone make it happen" />
 
             <span tal:replace="structure context/@@authenticator/authenticator"/>
             <div class="action" tal:repeat="action view/actions/values|nothing">
               <input type="submit" tal:replace="structure action/render" />
             </div>
           </form>
-        </div>
-        <div class="external half">
-          <input class="submit facebook" type="submit" value="Sign up with Facebook">
-          <input class="submit google" type="submit" value="Sign up with Google">
         </div>
       </div>
       <div class="footer">

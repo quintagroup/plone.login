@@ -31,7 +31,7 @@
 
       <!-- to switch to non-federated, remove the federated class below, and the .half class below that -->
       <div class="meat federated">
-        <div class="native half">
+        <div class="native">
 
         <form action="." method="post"
             tal:attributes="action view/action; enctype view/enctype">
@@ -89,10 +89,6 @@
               <input type="submit" tal:replace="structure action/render" />
             </div>
         </form>
-        </div>
-        <div class="external half">
-          <input class="submit facebook" type="submit" value="Log in with Facebook">
-          <input class="submit google" type="submit" value="Log in with Google">
         </div>
       </div>
       <div class="footer">
